@@ -24,7 +24,8 @@ public class ProcessSerivce implements ProcessInterface {
 
     public Pedidos buscarPedido(String pedido) {
         try {
-            return entidad.stream().filter((x) -> x.pedido == pedido).collect(Collectors.toList()).get(0);
+            // == pedido
+            return entidad.stream().filter((x) -> x.pedido.equals(pedido)).collect(Collectors.toList()).get(0);
 
         } catch (Exception e) {
             return new Pedidos("xxx", new ArrayList<>(Arrays.asList("-", "-", "-")), "xxx");

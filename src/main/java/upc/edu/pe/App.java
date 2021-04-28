@@ -24,7 +24,7 @@ public class App {
         System.out.println("Ingrese Numero de Pedido: ");
         pedido = System.console().readLine();
 
-        execute.buscarPedido("123454");
+        execute.buscarPedido(pedido);
         // execute.buscarPedidoAll();
 
         System.out.println("Desea generar las cantidades por tallas? Presione S/N ");
