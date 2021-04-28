@@ -22,6 +22,7 @@ public class Main {
     private double kgsTotal;
 
     private Transaccion Transac;
+    
 
     public List<Pedidos> ejecutar() {
         System.out.println(Titulo("COMERCIAL"));
