@@ -27,7 +27,6 @@ public class App {
             pedido = reader.readLine();
             execute.buscarPedido(pedido);
 
-            System.out.println("Desea generar las cantidades por tallas? Presione S/N ");
             conf = reader.readLine();
 
             if (conf.equals("S")) {
@@ -101,6 +100,7 @@ public class App {
                 ejecutar(execute);
 
             } else if (opc.equals("2")) {
+            	execute.ejecutar();
                 execute.buscarPedidoAll();
             } else if (opc.equals("3")) {
                 System.exit(0);

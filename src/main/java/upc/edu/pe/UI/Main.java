@@ -29,9 +29,17 @@ public class Main {
     public void buscarPedido(String pedido) {
         entidad = service.buscarPedido(pedido);
         utilies<Pedidos> x = new utilies<Pedidos>(entidad);
-        System.out.println(
-                entidad.pedido == "xxx" ? "Pedido No Encontrado" : "Pedido Encontrado con los siguientes datos:");
-        x.write(x.datos());
+        if ( entidad.pedido == "xxx" ) {
+        	 System.out.println("Pedido No Encontrado");
+        	  x.write(x.datos());
+         }
+        else {
+        	  System.out.println("Pedido Encontrado con los siguientes datos:");
+        	  x.write(x.datos());
+        	  System.out.println("Desea generar las cantidades por tallas? Presione S/N ");
+        }
+      
+     
     }
 
     public void buscarPedidoAll() {
