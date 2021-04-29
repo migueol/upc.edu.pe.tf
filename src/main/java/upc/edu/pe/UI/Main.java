@@ -1,14 +1,9 @@
 package upc.edu.pe.UI;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.PrimitiveIterator;
 import java.util.stream.Collectors;
-
-
-
-
 import javax.swing.TransferHandler.TransferSupport;
 
 import upc.edu.pe.Entidades.Pedidos;
@@ -25,7 +20,6 @@ public class Main {
     private double kgsTotal;
 
     private Transaccion Transac;
-
 
     public List<Pedidos> ejecutar() {
         System.out.println(Titulo("COMERCIAL"));
