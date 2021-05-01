@@ -2,9 +2,7 @@ package upc.edu.pe.Entidades;
 
 import java.util.List;
 
-public class Transaccion extends Pedidos {
-    // public String pedido;
-    // public List<String> talla;
+public class Transaccion extends Pedido {
     public List<Integer> cantidad100;
     public List<Integer> cantidad108;
     public List<Double> pesos;

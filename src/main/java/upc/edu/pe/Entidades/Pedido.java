@@ -1,18 +1,17 @@
 package upc.edu.pe.Entidades;
 import java.util.List;
 
-public class Pedidos {
+public class Pedido {
     public String pedido;
     public  List<String> Talla;
     public String componente;
 
-    public Pedidos(String pedido,  List<String> Talla, String componente) {
+    public Pedido(String pedido,  List<String> Talla, String componente) {
     	super();
         this.pedido = pedido;
         this.Talla = Talla;
         this.componente = componente;
-    }
-
+    } 
     public String getComponente() {
         return componente;
     }

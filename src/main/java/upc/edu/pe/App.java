@@ -1,16 +1,11 @@
 package upc.edu.pe;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputFilter.Config;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
-
-import upc.edu.pe.UI.Main;
+import upc.edu.pe.Entidades.Pedido;
+import upc.edu.pe.UI.Controller;
 
 /**
  * Hello world!
@@ -19,9 +14,10 @@ import upc.edu.pe.UI.Main;
 public class App {
     static String conf = "";
     static String pedido = "";
+    static Controller execute;
     static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    static void ejecutar(Main execute) {
+    static void ejecutar(Controller execute) {
         try {
             System.out.println("Ingrese Numero de Pedido: ");
             pedido = reader.readLine();
@@ -30,7 +26,7 @@ public class App {
             conf = reader.readLine();
 
             if (conf.equals("S")) {
-                System.out.println("Ingrese las cantidades por tallas segun el ratio de tallas seguida por una ',' ");
+                System.out.println("Ingrese las cantidades por tallas segun el ratio de tallas seguida por una ',':  ");
                 String confCant = reader.readLine();
                 // execute.ingresaCantidades( new ArrayList<>(Arrays.asList(80,78,95)));
                 try {
@@ -39,10 +35,7 @@ public class App {
                     for (String ch : arr) {
                         listCant.add(Integer.parseInt(ch));
                     }
-                    // confCant.chars().forEach(i -> execute.ingresaCantidades(new
-                    // ArrayList<>(Arrays.asList(i))));
-                    // Stream<String> stringStream = confCant.codePoints() .mapToObj(c ->
-                    // String.valueOf((char) c));
+
                     execute.ingresaCantidades(listCant);
 
                     System.out.println("Desea generar los pesos por tallas? Presione S/N ");
@@ -69,39 +62,78 @@ public class App {
                     }
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
-                    // TODO: handle exception
                 }
 
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
 
-    public static void main(String[] args) throws IOException {
-
-        Main execute = new Main();
+    static void SingIn() {
         System.out.println("::::Bienvenido::::");
+        execute = new Controller();
+    }
+
+    static void msgSingIn() {
+        System.out.println("0 => Registrar un Pedido::::");
         System.out.println("1 => Buscar y trabajar un Pedido::::");
         System.out.println("2 => Mostrar todos los Pedidos::::");
         System.out.println("3 => Salir de la Aplicacion::::");
         System.out.print("Por favor ingrese una opcion para continuar: ");
+    }
+
+    static void recursive(boolean opc) {
+        if (opc) {
+            SingIn();
+            msgSingIn();
+        } else {
+            msgSingIn();
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        recursive(true);
         String opc = null;
         try {
             opc = reader.readLine();
-            if (opc.equals("1")) {
+            if (opc.equals("0")) {
+                System.out.println("Ingrese Numero de Pedido: ");
+                pedido = reader.readLine();
+                System.out.println("Ingrese Tallas del Pedido: ");
+                String tallas = reader.readLine();
+                String[] arr = tallas.split(",");
+
+                ArrayList<String> ratioTallas = new ArrayList<>();
+                for (String ch : arr) {
+                    ratioTallas.add(ch);
+                }
+
+                System.out.println("Ingrese Componente del Pedido: ");
+                String cmp = reader.readLine();
+
+                execute.AddPedido(new Pedido(pedido, ratioTallas, cmp));
+                System.out.println("::::Pedido Guardado::::");
+                System.out.println("............................");
+                System.out.println("............................");
+                //recursive(false);
+                main(args);
+
+            } else if (opc.equals("1")) {
                 execute.ejecutar();
                 System.out.println("::::Cargando Pedidos::::");
                 System.out.println("............................");
                 System.out.println("............................");
                 System.out.println("....Pedidos Cargados......");
-                ejecutar(execute);
+                main(args);
+                //ejecutar(execute);
 
             } else if (opc.equals("2")) {
-            	execute.ejecutar();
+                execute.ejecutar();
                 execute.buscarPedidoAll();
+                main(args);
             } else if (opc.equals("3")) {
                 System.exit(0);
             } else {
@@ -112,17 +144,5 @@ public class App {
             e.printStackTrace();
         }
 
-        // System.exit(0);
-
-        // Main execute = new Main();
-        // execute.ejecutar();
-        // System.out.println("Ingrese Numero de Pedido: ");
-        // pedido = reader.readLine();
-        // execute.buscarPedido("123456");
-        // execute.buscarPedidoAll();
-
-        // execute.ingresaPesos( new ArrayList<>(Arrays.asList(15.0,20.0,10.0)));
-
-        // execute.KgsxCompra();
     }
 }
